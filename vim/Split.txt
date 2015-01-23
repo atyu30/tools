@@ -1,0 +1,17 @@
+Vertical:
+vim -On file1 file2 ...
+:vs
+
+Horizon:
+vim -on file1 file2 ...
+:sv
+
+Move the cursor
+
+h, j, k, l
+
+Right:Ctrl+W l
+Left:Ctrl+W h
+Up:Ctrl+W k
+Down:Ctrl+W j
+Next:Ctrl+W w
