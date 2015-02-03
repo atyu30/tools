@@ -1,0 +1,105 @@
+[root@atyu30 tmp]# vi GHOST.c
+[root@atyu30 tmp]# gcc GHOST.c -o GHOST
+[root@atyu30 tmp]# ./GHOST 
+vulnerable
+
+[root@atyu30 tmp]# rpm -qa | grep glib
+glibc-2.5-123
+compat-glibc-headers-2.3.4-2.26
+glibc-devel-2.5-123
+dbus-glib-devel-0.73-11.el5_9
+compat-glibc-2.3.4-2.26
+glibc-2.5-123
+glib2-2.12.3-4.el5_3.1
+glib2-devel-2.12.3-4.el5_3.1
+dbus-glib-0.73-11.el5_9
+glibc-common-2.5-123
+compat-glibc-2.3.4-2.26
+glibc-headers-2.5-123
+avahi-glib-0.6.16-10.el5_6
+avahi-glib-0.6.16-10.el5_6
+NetworkManager-glib-0.7.0-13.el5
+glib2-2.12.3-4.el5_3.1
+dbus-glib-0.73-11.el5_9
+NetworkManager-glib-0.7.0-13.el5
+glibc-devel-2.5-123
+[root@atyu30 tmp]# yum update glibc 
+Loaded plugins: dellsysid, fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirrors.skyshe.cn
+ * extras: mirrors.skyshe.cn
+ * updates: mirrors.skyshe.cn
+Setting up Update Process
+Resolving Dependencies
+--> Running transaction check
+--> Processing Dependency: glibc = 2.5-123 for package: glibc-headers
+--> Processing Dependency: glibc = 2.5-123 for package: nscd
+--> Processing Dependency: glibc = 2.5-123 for package: glibc-devel
+--> Processing Dependency: glibc = 2.5-123 for package: glibc-devel
+---> Package glibc.i686 0:2.5-123.el5_11.1 set to be updated
+--> Processing Dependency: glibc-common = 2.5-123.el5_11.1 for package: glibc
+---> Package glibc.x86_64 0:2.5-123.el5_11.1 set to be updated
+--> Running transaction check
+---> Package glibc-common.x86_64 0:2.5-123.el5_11.1 set to be updated
+---> Package glibc-devel.i386 0:2.5-123.el5_11.1 set to be updated
+---> Package glibc-devel.x86_64 0:2.5-123.el5_11.1 set to be updated
+---> Package glibc-headers.x86_64 0:2.5-123.el5_11.1 set to be updated
+---> Package nscd.x86_64 0:2.5-123.el5_11.1 set to be updated
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=======================================================================================================================================
+ Package                           Arch                       Version                                Repository                   Size
+=======================================================================================================================================
+Updating:
+ glibc                             i686                       2.5-123.el5_11.1                       updates                     5.4 M
+ glibc                             x86_64                     2.5-123.el5_11.1                       updates                     4.8 M
+Updating for dependencies:
+ glibc-common                      x86_64                     2.5-123.el5_11.1                       updates                      16 M
+ glibc-devel                       i386                       2.5-123.el5_11.1                       updates                     2.1 M
+ glibc-devel                       x86_64                     2.5-123.el5_11.1                       updates                     2.4 M
+ glibc-headers                     x86_64                     2.5-123.el5_11.1                       updates                     602 k
+ nscd                              x86_64                     2.5-123.el5_11.1                       updates                     178 k
+
+Transaction Summary
+=======================================================================================================================================
+Install       0 Package(s)
+Upgrade       7 Package(s)
+
+Total size: 32 M
+Is this ok [y/N]: y
+Downloading Packages:
+Running rpm_check_debug
+Running Transaction Test
+Finished Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Updating       : glibc-common                                                                                                   1/14 
+  Updating       : glibc                                                                                                          2/14 
+  Updating       : nscd                                                                                                           3/14 
+  Updating       : glibc-headers                                                                                                  4/14 
+  Updating       : glibc-devel                                                                                                    5/14 
+  Updating       : glibc                                                                                                          6/14 
+  Updating       : glibc-devel                                                                                                    7/14 
+  Cleanup        : glibc-headers                                                                                                  8/14 
+  Cleanup        : glibc-common                                                                                                   9/14 
+  Cleanup        : glibc                                                                                                         10/14 
+  Cleanup        : glibc                                                                                                         11/14 
+  Cleanup        : nscd                                                                                                          12/14 
+  Cleanup        : glibc-devel                                                                                                   13/14 
+  Cleanup        : glibc-devel                                                                                                   14/14 
+
+Updated:
+  glibc.i686 0:2.5-123.el5_11.1                                     glibc.x86_64 0:2.5-123.el5_11.1                                    
+
+Dependency Updated:
+  glibc-common.x86_64 0:2.5-123.el5_11.1        glibc-devel.i386 0:2.5-123.el5_11.1       glibc-devel.x86_64 0:2.5-123.el5_11.1      
+  glibc-headers.x86_64 0:2.5-123.el5_11.1       nscd.x86_64 0:2.5-123.el5_11.1           
+
+Complete!
+[root@atyu30 tmp]# yum update glibc 
+[root@atyu30 tmp]# ./GHOST 
+notvulnerable
+[root@atyu30 tmp]# 
+
