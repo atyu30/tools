@@ -1,0 +1,17 @@
+[root@atyu30 62ssh]# docker build --rm -t atyu30/sshd .
+Sending build context to Docker daemon 2.048 kB
+Sending build context to Docker daemon 
+Step 0 : FROM blalor/centos
+ ---> f01c1b138488
+Step 1 : MAINTAINER atyu30
+ ---> Using cache
+ ---> 77d37fd80bfd
+Step 2 : RUN yum install -y openssh-server
+ ---> Running in 10fcbfa876aa
+Loaded plugins: fastestmirror
+Determining fastest mirrors
+Error: Cannot find a valid baseurl for repo: base
+Could not retrieve mirrorlist http://mirrorlist.centos.org/?release=6&arch=x86_64&repo=os error was
+14: PYCURL ERROR 7 - "Failed to connect to 2a02:2498:1:3d:5054:ff:fed3:e91a: Network is unreachable"
+INFO[0024] The command [/bin/sh -c yum install -y openssh-server] returned a non-zero code: 1 
+
