@@ -1,0 +1,111 @@
+[root@atyu30 centos76]# docker build --rm -t centos76/sshd .
+Sending build context to Docker daemon  2.56 kB
+Sending build context to Docker daemon 
+Step 0 : FROM centos:centos7
+ ---> dade6cb4530a
+Step 1 : MAINTAINER Atyu30 <ipostfix@gmail.com>
+ ---> Using cache
+ ---> 47d02e009642
+Step 2 : RUN yum -y install openssh-server passwd sed
+ ---> Using cache
+ ---> e45337af1f80
+Step 3 : RUN echo "root:root" | chpasswd
+ ---> Using cache
+ ---> eef10c3f541f
+Step 4 : RUN sshd-keygen
+ ---> Using cache
+ ---> c55e688dc8aa
+Step 5 : RUN sed -i "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config
+ ---> Using cache
+ ---> 69f46d5bde24
+Step 6 : EXPOSE 22
+ ---> Using cache
+ ---> 62a06a6e8101
+Step 7 : CMD /usr/sbin/sshd -D
+ ---> Using cache
+ ---> 55cdfb6b17b8
+Successfully built 55cdfb6b17b8
+[root@atyu30 centos76]# docker run -d -P --name centos76sshd centos76/sshd
+883a3571430ca5a1257427276f11b19c4a0ba5e51caf6a3e485f5b3368e76395
+[root@atyu30 centos76]# docker ps
+CONTAINER ID        IMAGE                COMMAND               CREATED             STATUS              PORTS                   NAMES
+883a3571430c        atyu75/sshd:latest   "/usr/sbin/sshd -D"   About an hour ago   Up About an hour    0.0.0.0:49153->22/tcp   centos76sshd        
+[root@atyu30 centos76]# 
+[root@atyu30 centos76]# docker stop 883a3571430c
+883a3571430c
+[root@atyu30 centos76]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+[root@atyu30 centos76]# 
+[root@atyu30 centos76]# docker start 883a3571430c
+883a3571430c
+[root@atyu30 centos76]# docker images
+REPOSITORY                         TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+<none>                             <none>              727589fa780a        13 hours ago        310.6 MB
+docker.yuyizhi.org/centos75/sshd   latest              55cdfb6b17b8        2 days ago          310.6 MB
+docker.yuyizhi.org/centos          centos75sshd        55cdfb6b17b8        2 days ago          310.6 MB
+centos76/sshd                      latest              55cdfb6b17b8        2 days ago          310.6 MB
+atyu75/sshd                        latest              55cdfb6b17b8        2 days ago          310.6 MB
+atyu34/sshd                        latest              e254e13dbaaf        2 days ago          310.6 MB
+atyu33/sshd                        latest              290a214633f9        2 days ago          310.6 MB
+atyu31/ssh                         centos7             41416c4fcaff        2 days ago          335.7 MB
+<none>                             <none>              c1c2185d44fe        2 days ago          309.4 MB
+atyu30/ssh                         centos7             778ff096a331        2 days ago          251.7 MB
+centos                             7                   dade6cb4530a        2 weeks ago         224 MB
+centos                             centos7             dade6cb4530a        2 weeks ago         224 MB
+centos                             latest              dade6cb4530a        2 weeks ago         224 MB
+[root@atyu30 centos76]# docker ps
+CONTAINER ID        IMAGE                COMMAND               CREATED             STATUS              PORTS                   NAMES
+883a3571430c        atyu75/sshd:latest   "/usr/sbin/sshd -D"   About an hour ago   Up 12 seconds       0.0.0.0:49154->22/tcp   centos76sshd        
+[root@atyu30 centos76]# 
+[root@atyu30 centos76]# docker images
+REPOSITORY                         TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+<none>                             <none>              727589fa780a        13 hours ago        310.6 MB
+docker.yuyizhi.org/centos75/sshd   latest              55cdfb6b17b8        2 days ago          310.6 MB
+atyu75/sshd                        latest              55cdfb6b17b8        2 days ago          310.6 MB
+docker.yuyizhi.org/centos          centos75sshd        55cdfb6b17b8        2 days ago          310.6 MB
+centos76/sshd                      latest              55cdfb6b17b8        2 days ago          310.6 MB
+atyu34/sshd                        latest              e254e13dbaaf        2 days ago          310.6 MB
+atyu33/sshd                        latest              290a214633f9        2 days ago          310.6 MB
+atyu31/ssh                         centos7             41416c4fcaff        2 days ago          335.7 MB
+<none>                             <none>              c1c2185d44fe        2 days ago          309.4 MB
+atyu30/ssh                         centos7             778ff096a331        2 days ago          251.7 MB
+centos                             7                   dade6cb4530a        2 weeks ago         224 MB
+centos                             centos7             dade6cb4530a        2 weeks ago         224 MB
+centos                             latest              dade6cb4530a        2 weeks ago         224 MB
+[root@atyu30 centos76]# docker tag 727589fa780a docker.yuyizhi.org/centos76sshd
+[root@atyu30 centos76]# docker images
+REPOSITORY                         TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+docker.yuyizhi.org/centos76sshd    latest              727589fa780a        13 hours ago        310.6 MB
+docker.yuyizhi.org/centos75/sshd   latest              55cdfb6b17b8        2 days ago          310.6 MB
+atyu75/sshd                        latest              55cdfb6b17b8        2 days ago          310.6 MB
+docker.yuyizhi.org/centos          centos75sshd        55cdfb6b17b8        2 days ago          310.6 MB
+centos76/sshd                      latest              55cdfb6b17b8        2 days ago          310.6 MB
+atyu34/sshd                        latest              e254e13dbaaf        2 days ago          310.6 MB
+atyu33/sshd                        latest              290a214633f9        2 days ago          310.6 MB
+atyu31/ssh                         centos7             41416c4fcaff        2 days ago          335.7 MB
+<none>                             <none>              c1c2185d44fe        2 days ago          309.4 MB
+atyu30/ssh                         centos7             778ff096a331        2 days ago          251.7 MB
+centos                             7                   dade6cb4530a        2 weeks ago         224 MB
+centos                             centos7             dade6cb4530a        2 weeks ago         224 MB
+centos                             latest              dade6cb4530a        2 weeks ago         224 MB
+[root@atyu30 centos76]# 
+[root@atyu30 centos76]# docker push docker.yuyizhi.org/centos76sshd
+The push refers to a repository [docker.yuyizhi.org/centos76sshd] (len: 1)
+Sending image list
+Pushing repository docker.yuyizhi.org/centos76sshd (1 tags)
+Image 511136ea3c5a already pushed, skipping
+Image 5b12ef8fd570 already pushed, skipping
+Image dade6cb4530a already pushed, skipping
+Image 47d02e009642 already pushed, skipping
+Image e45337af1f80 already pushed, skipping
+Image eef10c3f541f already pushed, skipping
+Image c55e688dc8aa already pushed, skipping
+Image 69f46d5bde24 already pushed, skipping
+Image 62a06a6e8101 already pushed, skipping
+Image 55cdfb6b17b8 already pushed, skipping
+727589fa780a: Image successfully pushed 
+Pushing tag for rev [727589fa780a] on {https://docker.yuyizhi.org/v1/repositories/centos76sshd/tags/latest}
+[root@atyu30 centos76]# 
+[root@atyu30 sample]# curl https://devel:123456@docker.yuyizhi.org/v1/repositories/centos76sshd/tags/latest
+"727589fa780a9d00670c81368494e267d63b7534f64a6e6dd8e07c2a2ab79d6f"[root@atyu30 sample]# 
+
