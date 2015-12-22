@@ -1,0 +1,1 @@
+b7393a39eac8102cdbbcaeac5f5f3e48  CentOS-Userland-7-armv7hl-Minimal-1511-CubieTruck.img.xz
