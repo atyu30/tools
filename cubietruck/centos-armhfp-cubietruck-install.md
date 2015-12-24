@@ -9,6 +9,7 @@ root/centos
 yum install chrony
 systemctl start chronyd
 systemctl enable chronyd
+timedatectl set-timezone Asia/Shanghai
 ```
 
 ##Service
